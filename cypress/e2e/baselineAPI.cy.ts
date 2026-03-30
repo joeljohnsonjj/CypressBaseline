@@ -28,6 +28,11 @@ describe('regresAPI Testing', () => {
         cy.request({
             method: 'PUT',
             url: 'https://reqres.in/api/users/87',
+            headers: {
+                'Authorization': 'Bearer YOUR_TOKEN_HERE',
+                'Content-Type': 'application/json',
+                'Custom-Header': 'custom-value'
+            },
             body: {
                 "name": "joel",
                 "job": "johnson"
