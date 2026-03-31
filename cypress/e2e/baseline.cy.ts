@@ -1,7 +1,10 @@
+import { page1 } from "../Pages/page1.cy";
+const obj1 = new page1;
+
 describe("Contains all possible interactions and flows", () => {
     
     beforeEach(() => {
-        cy.visit("https://example.cypress.io/");
+        cy.visit(obj1.baseURL);
     })
     
     it("querying", () => {
@@ -67,5 +70,15 @@ describe("Contains all possible interactions and flows", () => {
         cy.get('.assertions-link')
             .should('have.attr', 'href')
             .and('include', 'cypress.io');
+    })
+
+    it('Connections', () => {
+        cy.xpath("/html/body/div[3]/div/div/ul/li[10]/a").click();
+        cy.get('.connectors-list>li').then(function($lis){
+        expect($lis).to.have.length(3)
+        expect($lis.eq(0)).to.contain('Walk the dog')
+        expect($lis.eq(1)).to.contain('Feed the cat')
+        expect($lis.eq(2)).to.contain('Write JavaScript')
+        })
     })
 } )
